@@ -1,23 +1,23 @@
-FUNCTION fn_dot_product(VAR v1: INTEGER[n], VAR v2 : INTEGER[n]) : INTEGER
+FUNCTION fn_dot_product(n:INTEGER, v1: ARRAY_OF INTEGER[n],v2 : ARRAY_OF INTEGER[n]) : INTEGER
 VAR
     ps:INTEGER:=0;
 BEGIN
-    FOR i FROM 0 TO v1.length  DO
+    FOR i FROM 0 TO n  DO
         ps:=ps+v1[i]*v2[i];
     END_FOR
     RETURN ps
 END
 ALGORITHM dot_product_algo
 VAR
-    v1,v2 : ARRAY_OF INTEGER[];
     n:INTEGER;
+    v1,v2 : ARRAY_OF INTEGER[n];
 BEGIN
-    Read(n)
-    FOR i FROM 0 TO v1.length  DO
-        Read(v1[i])
-        Read(v2[i])
+    Read(n);
+    FOR i FROM 0 TO n  DO
+        Read(v1[i]);
+        Read(v2[i]);
     END_FOR
-    IF (fn_dot_product=0) THEN
+    IF (fn_dot_product(n,v1,v2)=0) THEN
         Write('Two vectors are orthogonal');
     ELSE
         Write('Two vectors are not orthogonal');
