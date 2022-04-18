@@ -2,26 +2,36 @@ FUNCTION fn_dot_product(ps:INTEGER,v1: ARRAY_OF INTEGER,v2 : ARRAY_OF INTEGER) :
 VAR
     i:INTEGER;
 BEGIN
-    FOR i FROM 0 TO v1.length-1  DO
+    FOR i FROM 0 TO 2  DO
         ps:=ps+v1[i]*v2[i];
     END_FOR
     RETURN ps
 END
+
+PROCEDURE read_vec(VAR v: ARRAY_OF INTEGER)
+VAR
+    i:INTEGER;
+BEGIN
+    FOR i FROM 0 TO 2 DO
+        Read(v[i]);
+    END_FOR
+END
+
 ALGORITHM dot_product_algo
 VAR
     ps:INTEGER:=0;
     n,i:INTEGER;
     v1,v2 : ARRAY_OF INTEGER[n];
 BEGIN
+    Write('Enter the number of pairs please');
     Read(n);
-    FOR i FROM 0 TO n-1  DO
-        Read(v1[i]);
-        Read(v2[i]);
+    FOR i FROM 0 TO n-1 DO
+        read_vec(v1);
+        read_vec(v2);
+        IF (fn_dot_product(ps,v1,v2)=0) THEN
+            Write('Two vectors are orthogonal');
+        ELSE
+            Write('Two vectors are not orthogonal');
+        END_IF
     END_FOR
-    IF (fn_dot_product(ps,v1,v2)=0) THEN
-        Write('Two vectors are orthogonal');
-    ELSE
-        Write('Two vectors are not orthogonal');
-    END_IF
-    
 END
